@@ -1,17 +1,28 @@
 [build-system]
-requires = ["setuptools>=64"]
+requires = ["setuptools>=77"]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "ganda-grammar"
 version = "0.1.0"
 description = "Luganda spelling and grammar correction by cited rules."
-readme = { text = "Luganda spelling and grammar correction.", content-type = "text/plain" }
+readme = "README.md"
+license = "Apache-2.0"
+license-files = ["LICENSE"]
 requires-python = ">=3.9"
 dependencies = []  # pure Python
+keywords = ["luganda", "ganda", "grammar", "spelling", "orthography", "nlp"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "Programming Language :: Python :: 3",
+    "Topic :: Text Processing :: Linguistic",
+]
 
 [project.optional-dependencies]
-mine = ["datasets"]                # ganda-grammar mine/fix --hf: a Hugging Face dataset
+mine = ["datasets"]  # ganda-grammar mine/fix --hf: a Hugging Face dataset
+test = ["pytest"]
 
 [project.scripts]
 ganda-grammar = "ganda_grammar.cli:main"
@@ -23,3 +34,6 @@ packages = ["ganda_grammar", "ganda_grammar.rules"]
 
 [tool.setuptools.package-data]
 "ganda_grammar.rules" = ["*.tsv", "*.txt"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

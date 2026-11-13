@@ -9,7 +9,7 @@ RULES = {
     "ORTH_L_R": ("r, not l, after e or i: ebilala → ebirala", f"{SRC}, §1.3"),
     "ORTH_VV_NC": ("single vowel before a nasal + consonant (mb, nd, nj, nz…): ensiimbi → ensimbi", f"{SRC}, §1.1.5, §1.1.7"),
     "ORTH_VV_CW": ("single vowel after a consonant + w or y, except ggw and ggy: omukyaala → omukyala", f"{SRC}, §1.1.6"),
-    "ORTH_LENGTH": ("long vowels and long consonants as the dictionary spells them: gwanga → ggwanga, omwaana → omwana",
+    "ORTH_LENGTH": ("long vowels and long consonants as the dictionary spells them: gwanga → ggwanga, olunnaku → olunaku",
                     f"{SRC}, §1.1.1-1.1.2, §1.2; spellings from the FSI Luganda Basic Course glossary (1968)"),
 }
 # misspelling → spelling, built by scripts/build_spellings.py
