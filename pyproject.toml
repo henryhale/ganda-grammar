@@ -11,7 +11,7 @@ requires-python = ">=3.9"
 dependencies = []  # pure Python
 
 [project.optional-dependencies]
-mine = ["datasets"]                # ganda-grammar mine over a Hugging Face dataset
+mine = ["datasets"]                # ganda-grammar mine/fix --hf: a Hugging Face dataset
 
 [project.scripts]
 ganda-grammar = "ganda_grammar.cli:main"

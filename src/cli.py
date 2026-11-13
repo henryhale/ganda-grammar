@@ -1,4 +1,5 @@
-"""ganda-grammar correct: correct Luganda text. ganda-grammar mine: collect corrections from a corpus."""
+"""ganda-grammar correct: correct Luganda text. ganda-grammar fix: write a corrected copy of a dataset.
+ganda-grammar mine: collect corrections from a corpus."""
 import argparse
 import json
 import sys
@@ -13,6 +14,16 @@ def main(argv=None):
     c = sub.add_parser("correct", help="correct text given as an argument, or on stdin")
     c.add_argument("text", nargs="?")
     c.add_argument("--json", action="store_true", help="print the corrected text and its edits as JSON")
+
+    f = sub.add_parser("fix", help="write a corrected copy of .txt and .jsonl files, folders, or a Hugging Face dataset")
+    f.add_argument("paths", nargs="*", help=".txt and .jsonl files, or folders of them")
+    f.add_argument("-o", "--out", required=True, help="folder for the corrected copies (a folder's files keep their place)")
+    f.add_argument("--hf", help="also correct this Hugging Face dataset, written to OUT as JSONL")
+    f.add_argument("--split", default="train")
+    f.add_argument("--field", action="append", metavar="FIELD",
+                   help="text field of .jsonl rows and dataset rows to correct (repeatable; default: text)")
+    f.add_argument("--workers", type=int, help="processes to use (default: one per CPU)")
+    f.add_argument("--log", help="also write one JSONL row per changed line or field, with its edits")
 
     m = sub.add_parser("mine", help="run the rules over a corpus, write one JSONL row per corrected sentence")
     m.add_argument("paths", nargs="*", help=".txt and .jsonl files, or folders of them")
@@ -35,6 +46,18 @@ def main(argv=None):
             print(json.dumps({"text": r.text, "edits": [asdict(e) for e in r.edits]}, ensure_ascii=False, indent=2))
         else:
             print(r.text, end="" if a.text is None else "\n")
+    elif a.cmd == "fix":
+        from .fix import fix
+
+        if not a.paths and not a.hf:
+            ap.error("fix needs paths, --hf, or both")
+        try:
+            r = fix(a.paths, a.out, a.field or ["text"], a.hf, a.split, a.workers, a.log)
+        except ValueError as e:
+            ap.error(str(e))
+        for rule, n in r.counts.most_common():
+            print(f"{rule}\t{n}")
+        print(f"{r.changed:,} of {r.seen:,} lines changed in {r.seconds:.1f}s; wrote {a.out}", file=sys.stderr)
     else:
         from .mine import hf_texts, local_texts, mine
 
