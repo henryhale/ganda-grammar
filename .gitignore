@@ -1,0 +1,21 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.venv/
+venv/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Outputs and large inputs
+dictionary/
+*.jsonl
+*.pdf
+
+# Editors and OS
+.vscode/
+.idea/
+.DS_Store
