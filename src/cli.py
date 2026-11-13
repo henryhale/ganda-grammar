@@ -12,8 +12,6 @@ def main(argv=None):
 
     c = sub.add_parser("correct", help="correct text given as an argument, or on stdin")
     c.add_argument("text", nargs="?")
-    c.add_argument("--engine", choices=("rules", "model"), default="rules")
-    c.add_argument("--model", help="Hugging Face id or local path of the model (--engine model)")
     c.add_argument("--json", action="store_true", help="print the corrected text and its edits as JSON")
 
     m = sub.add_parser("mine", help="run the rules over a corpus, write one JSONL row per corrected sentence")
@@ -32,7 +30,7 @@ def main(argv=None):
         from . import correct
 
         text = sys.stdin.read() if a.text is None else a.text
-        r = correct(text, a.engine, **({"model": a.model} if a.model else {}))
+        r = correct(text)
         if a.json:
             print(json.dumps({"text": r.text, "edits": [asdict(e) for e in r.edits]}, ensure_ascii=False, indent=2))
         else:

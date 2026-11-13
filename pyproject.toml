@@ -5,13 +5,12 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "ganda-grammar"
 version = "0.1.0"
-description = "Luganda spelling and grammar correction, by cited rules or by a fine-tuned ByT5-small model."
+description = "Luganda spelling and grammar correction by cited rules."
 readme = { text = "Luganda spelling and grammar correction.", content-type = "text/plain" }
 requires-python = ">=3.9"
-dependencies = []  # the rules engine is pure Python
+dependencies = []  # pure Python
 
 [project.optional-dependencies]
-model = ["torch", "transformers"]  # engine="model"
 mine = ["datasets"]                # ganda-grammar mine over a Hugging Face dataset
 
 [project.scripts]
@@ -20,7 +19,7 @@ ganda-grammar = "ganda_grammar.cli:main"
 # The package lives in src/ itself, not src/ganda_grammar/
 [tool.setuptools]
 package-dir = { "ganda_grammar" = "src" }
-packages = ["ganda_grammar", "ganda_grammar.model", "ganda_grammar.rules"]
+packages = ["ganda_grammar", "ganda_grammar.rules"]
 
 [tool.setuptools.package-data]
 "ganda_grammar.rules" = ["*.tsv", "*.txt"]

@@ -8,7 +8,7 @@ APOSTROPHES = "'’ʼ‘"
 
 @dataclass(frozen=True)
 class Edit:
-    rule: str  # rule id, see RULES; "MODEL" for the model engine
+    rule: str  # rule id, see RULES
     start: int  # character offsets into the original text
     end: int
     before: str
