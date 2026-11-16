@@ -86,12 +86,13 @@ citations.
 - **The precision of each rule on real text hasn't been measured yet.** Review a sample of `--log` output before
   trusting `fix` on data that matters.
 
-## The dictionary
+## The word list
 
-`data/` holds a Luganda dictionary (15,655 entries; a cleaned copy of 13,671) merged from free sources, with
-English meanings, word counts and the sources of each entry. See `data/README.md`. It isn't part of the package, and
-it has its own licence: because it includes Wiktionary entries, the dictionary as a whole is **CC BY-SA 4.0**.
-`scripts/clean_dictionary.py` makes the cleaned copy and logs every change.
+`notebooks/build_wordlist.ipynb` counts every Luganda word form in 48 Hugging Face datasets and writes
+`luganda_words.tsv`: each word, how often it occurs and in how many datasets, with machine-generated text counted
+apart. It counts only sentences that read as Luganda, by the package's own test. `build_wordlist_selfcontained.ipynb`
+is the same notebook with the package written into its first cells, so it runs on Kaggle with nothing to install.
+Neither the notebooks nor the word list are part of the package.
 
 ## Development
 
@@ -101,10 +102,9 @@ pytest
 ```
 
 Every rule's description carries examples (`before → after`), and each one is a test. `scripts/` holds the tools that
-build the rules' data (`build_spellings.py`), compile Luganda text (`compile_luganda_text.py`), bundle the package into
-a self-contained notebook (`bundle_notebook.py`) and clean the dictionary (`clean_dictionary.py`).
+build the rules' data (`build_spellings.py`) and bundle the package into a self-contained notebook
+(`bundle_notebook.py`).
 
 ## Licence
 
-The code and the rules' data are under the Apache License 2.0 (see `LICENSE`). The dictionary in `data/` is under
-CC BY-SA 4.0.
+Apache License 2.0 (see `LICENSE`).

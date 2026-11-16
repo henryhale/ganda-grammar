@@ -1,7 +1,7 @@
 """Write a self-contained copy of a notebook, carrying ganda-grammar in its first cells.
 
-    python scripts/bundle_notebook.py notebooks/build_dictionary.ipynb
-    → notebooks/build_dictionary_selfcontained.ipynb (or name the output as a second argument)
+    python scripts/bundle_notebook.py notebooks/build_wordlist.ipynb
+    → notebooks/build_wordlist_selfcontained.ipynb (or name the output as a second argument)
 
 The copy starts with one %%writefile cell per file of the package (src/, written as ganda_grammar/, with its data files)
 and of scripts/, all under BUNDLE, which goes first on sys.path. Its own cells then find BUNDLE defined, so the notebook
