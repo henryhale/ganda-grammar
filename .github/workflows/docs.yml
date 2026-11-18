@@ -2,7 +2,7 @@ name: Docs 📚
 
 on:
   push:
-    branches: ["main"]
+    branches: ["master"]
   pull_request:
   workflow_dispatch:
 
@@ -35,7 +35,6 @@ jobs:
 
   deploy:
     name: Deploy to GitHub Pages
-    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
     needs: build
     runs-on: ubuntu-latest
     permissions:
