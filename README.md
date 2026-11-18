@@ -92,12 +92,13 @@ citations.
 `luganda_words.tsv`: each word, how often it occurs and in how many datasets, with machine-generated text counted
 apart. It counts only sentences that read as Luganda, by the package's own test. `build_wordlist_selfcontained.ipynb`
 is the same notebook with the package written into its first cells, so it runs on Kaggle with nothing to install.
-Neither the notebooks nor the word list are part of the package.
+The list is published as [henryhale/luganda-words](https://huggingface.co/datasets/henryhale/luganda-words) on
+Hugging Face. Neither the notebooks nor the word list are part of the package.
 
 ## Development
 
 ```
-pip install -e '.[test]'
+pip install '.[test]'   # reinstall after changing src/
 pytest
 ```
 

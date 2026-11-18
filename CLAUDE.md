@@ -8,20 +8,24 @@ orthography or grammar it comes from. It's pure Python with no runtime dependenc
 ## Commands
 
 ```
-pip install -e '.[test]'          # required before tests: the package is importable only once installed (see Layout)
+pip install '.[test]'             # required before tests, and again after changing src/ (no editable install, see Layout)
 pytest                             # all tests
 pytest tests/test_rules.py -k SPLIT_LOC          # one rule's example tests
 pytest "tests/test_rules.py::test_rule_example[SPLIT_LOC:mukibuga]"
 ganda-grammar correct --json "na abantu"         # see the edits the rules make
-pip install -e '.[mine]'          # adds `datasets` for `fix --hf` / `mine --hf`
+pip install '.[mine]'             # adds `datasets` for `fix --hf` / `mine --hf`
 ```
 
 The system has `python3` but no `python` on PATH.
 
 ## Layout
 
-The package is `src/` itself, not `src/ganda_grammar/`. pyproject maps `ganda_grammar` → `src`. Code imports
-`ganda_grammar.*`, so a plain `python3 -m pytest` without installing fails at collection.
+The package is `src/` itself, not `src/ganda_grammar/`. Hatchling maps `src` → `ganda_grammar` in the wheel, and
+code imports `ganda_grammar.*`, so tests only run against an installed copy. Hatchling can't make an editable install
+with that mapping, so reinstall after every change to `src/`.
+
+The version comes from the git tag through hatch-vcs: tag `v0.1.0` builds `0.1.0`, and untagged commits build a
+`.devN` version. Never set it in `pyproject.toml`.
 
 ## Architecture
 

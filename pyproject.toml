@@ -1,12 +1,13 @@
 [build-system]
-requires = ["setuptools>=77"]
-build-backend = "setuptools.build_meta"
+requires = ["hatchling>=1.27", "hatch-vcs"]
+build-backend = "hatchling.build"
 
 [project]
 name = "ganda-grammar"
-version = "0.1.0"
+dynamic = ["version"]  # from the git tag, by hatch-vcs: v0.1.0 → 0.1.0
 description = "Luganda spelling and grammar correction by cited rules."
 readme = "README.md"
+authors = [{ name = "Henry Hale" }]
 license = "Apache-2.0"
 license-files = ["LICENSE"]
 requires-python = ">=3.9"
@@ -20,6 +21,12 @@ classifiers = [
     "Topic :: Text Processing :: Linguistic",
 ]
 
+[project.urls]
+Homepage = "https://github.com/henryhale/ganda-grammar"
+Issues = "https://github.com/henryhale/ganda-grammar/issues"
+Author = "https://github.com/henryhale"
+"Word list" = "https://huggingface.co/datasets/henryhale/luganda-words"
+
 [project.optional-dependencies]
 mine = ["datasets"]  # ganda-grammar mine/fix --hf: a Hugging Face dataset
 test = ["pytest"]
@@ -27,13 +34,17 @@ test = ["pytest"]
 [project.scripts]
 ganda-grammar = "ganda_grammar.cli:main"
 
-# The package lives in src/ itself, not src/ganda_grammar/
-[tool.setuptools]
-package-dir = { "ganda_grammar" = "src" }
-packages = ["ganda_grammar", "ganda_grammar.rules"]
+[tool.hatch.version]
+source = "vcs"
 
-[tool.setuptools.package-data]
-"ganda_grammar.rules" = ["*.tsv", "*.txt"]
+[tool.hatch.build.targets.wheel]
+packages = ["src"]
+
+[tool.hatch.build.targets.wheel.sources]
+"src" = "ganda_grammar"
+
+[tool.hatch.build.targets.sdist]
+include = ["src", "tests"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
