@@ -20,3 +20,6 @@ luganda_words/
 .vscode/
 .idea/
 .DS_Store
+
+# MkDocs
+site/

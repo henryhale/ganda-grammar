@@ -69,6 +69,15 @@ The version comes from the git tag through hatch-vcs: tag `v0.1.0` builds `0.1.0
   `build_wordlist.ipynb`, never the self-contained copy.
 - Notebooks are not part of the package, and the package is Apache-2.0 only.
 
+## Docs
+
+- `docs/` is an MkDocs Material site. `.github/workflows/docs.yml` builds it with `mkdocs build --strict` and deploys
+  it to GitHub Pages from `main`.
+- `docs/hooks.py` replaces `<!-- RULES -->` in `docs/rules.md` with a table built from the installed
+  `ganda_grammar.RULES`. Reinstall the package before `mkdocs serve`, or the table shows the old rules.
+- The README is a short landing page and doubles as the PyPI description, so its links must be absolute URLs.
+  Details belong in `docs/`.
+
 ## Conventions
 
 - Every rule needs a citation (Walusimbi 2015, *Empandiika y'Oluganda Entongole*, or Sternefeld & Sseguya 2015).

@@ -23,6 +23,7 @@ classifiers = [
 
 [project.urls]
 Homepage = "https://github.com/henryhale/ganda-grammar"
+Documentation = "https://henryhale.github.io/ganda-grammar/"
 Issues = "https://github.com/henryhale/ganda-grammar/issues"
 Author = "https://github.com/henryhale"
 "Word list" = "https://huggingface.co/datasets/henryhale/luganda-words"
@@ -30,6 +31,7 @@ Author = "https://github.com/henryhale"
 [project.optional-dependencies]
 mine = ["datasets"]  # ganda-grammar mine/fix --hf: a Hugging Face dataset
 test = ["pytest"]
+docs = ["mkdocs-material"]
 
 [project.scripts]
 ganda-grammar = "ganda_grammar.cli:main"

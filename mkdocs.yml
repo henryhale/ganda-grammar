@@ -1,0 +1,43 @@
+site_name: ganda-grammar
+site_description: Luganda spelling and grammar correction by cited rules.
+site_url: https://henryhale.github.io/ganda-grammar/
+repo_url: https://github.com/henryhale/ganda-grammar
+repo_name: henryhale/ganda-grammar
+edit_uri: edit/main/docs/
+
+nav:
+  - Home: index.md
+  - Usage: usage.md
+  - Rules: rules.md
+  - Development: development.md
+
+theme:
+  name: material
+  features:
+    - content.code.copy
+    - navigation.footer
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      toggle:
+        icon: material/brightness-7
+        name: Dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      toggle:
+        icon: material/brightness-4
+        name: Light mode
+
+markdown_extensions:
+  - admonition
+  - tables
+  - toc:
+      permalink: true
+  - pymdownx.highlight
+  - pymdownx.superfences
+
+hooks:
+  - docs/hooks.py
+exclude_docs: |
+  hooks.py
+  __pycache__/
