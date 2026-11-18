@@ -6,8 +6,8 @@
 [![License](https://img.shields.io/badge/license-Apache--2.0-blue)](https://github.com/henryhale/ganda-grammar/blob/main/LICENSE)
 [![Word list](https://img.shields.io/badge/%F0%9F%A4%97-luganda--words-yellow)](https://huggingface.co/datasets/henryhale/luganda-words)
 
-Luganda spelling and grammar correction by rules, each one citing the official orthography,
-[Empandiika y'Oluganda Entongole](https://learnluganda.com/empandiika), or a published grammar.
+Luganda spelling and grammar correction by rules, each one citing the official orthography, and based on 
+[Empandiika y'Oluganda Entongole](https://learnluganda.com/empandiika).
 Pure Python, with no dependencies.
 
 ```
